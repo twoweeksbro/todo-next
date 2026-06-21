@@ -1,0 +1,18 @@
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export async function GET() {
+  const todos = await prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
+  return NextResponse.json(todos);
+}
+
+export async function POST(req: NextRequest) {
+  const { title } = await req.json();
+
+  if (!title || typeof title !== "string" || !title.trim()) {
+    return NextResponse.json({ error: "title is required" }, { status: 400 });
+  }
+
+  const todo = await prisma.todo.create({ data: { title: title.trim() } });
+  return NextResponse.json(todo, { status: 201 });
+}
