@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import TodoList from "@/components/TodoList";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const todos = await prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
 
