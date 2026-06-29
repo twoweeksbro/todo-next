@@ -4,7 +4,7 @@ import TodoList from "@/components/TodoList";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const todos = await prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
+  const todos = await prisma.todo.findMany({ orderBy: { order: "asc" } });
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-zinc-50 px-4 py-16 dark:bg-black">

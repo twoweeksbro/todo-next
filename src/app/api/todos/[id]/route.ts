@@ -13,6 +13,9 @@ export async function PATCH(
     data: {
       ...(typeof body.title === "string" ? { title: body.title.trim() } : {}),
       ...(typeof body.done === "boolean" ? { done: body.done } : {}),
+      ...(typeof body.status === "string" ? { status: body.status } : {}),
+      ...(body.date !== undefined ? { date: body.date } : {}),
+      ...(typeof body.order === "number" ? { order: body.order } : {}),
     },
   });
 

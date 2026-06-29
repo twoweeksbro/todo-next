@@ -15,5 +15,8 @@ model Todo {
   id        Int      @id @default(autoincrement())
   title     String
   done      Boolean  @default(false)
+  status    String   @default("none")
+  date      String?
+  order     Int      @default(0)
   createdAt DateTime @default(now())
 }
